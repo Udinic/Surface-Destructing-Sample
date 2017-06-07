@@ -1,6 +1,7 @@
 package com.udinic.surfdestructsample;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
 import android.util.Log;
@@ -14,9 +15,10 @@ class DemoSurfaceTextureListener implements TextureView.SurfaceTextureListener {
     private MediaPlayer mMediaPlayer;
     private final int mPosition;
 
-    DemoSurfaceTextureListener(Context context, int position) {
+    DemoSurfaceTextureListener(Context context, int position, MediaPlayer mediaPlayer) {
         mContext = context;
         mPosition = position;
+        mMediaPlayer = mediaPlayer;
     }
 
     @Override
@@ -55,16 +57,23 @@ class DemoSurfaceTextureListener implements TextureView.SurfaceTextureListener {
          */
         Log.d("udinic", "onSurfaceTextureDestroyed position[" + mPosition
                 + "] surfaceTexture[" + Integer.toHexString(surfaceTexture.hashCode())
-                + "] mplayer[" + Integer.toHexString(mMediaPlayer.hashCode()) + "]");
+                + "] mplayer[" + (mMediaPlayer == null ? "NA" : Integer.toHexString(mMediaPlayer.hashCode())) + "]");
 
-        mMediaPlayer.release();
+        cleanup();
         surfaceTexture.release();
-        mMediaPlayer = null;
         return false;
     }
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
 
+    }
+
+    public void cleanup() {
+        if (mMediaPlayer != null) {
+            Log.d("udinic", "cleanup mplayer[" + Integer.toHexString(mMediaPlayer.hashCode()) + "]");
+            mMediaPlayer.release();
+        }
+        mMediaPlayer = null;
     }
 }

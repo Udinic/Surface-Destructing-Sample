@@ -3,13 +3,8 @@ package com.udinic.surfdestructsample;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.TextureView;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -18,12 +13,9 @@ import android.widget.TextView;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
-public class RecyclerViewActivity extends AppCompatActivity {
+public class RecyclerViewActivity extends BaseActivity {
 
-    private static final int LIST_SIZE = 15;
     private RecyclerView.Adapter<DemoViewHolder> adapter;
-    private DemoSurfaceTextureListener[] mSurfaceTextureListeners =
-            new DemoSurfaceTextureListener[LIST_SIZE];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +53,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
             public void onBindViewHolder(DemoViewHolder holder, int position) {
                 if (mSurfaceTextureListeners[position] == null) {
                     mSurfaceTextureListeners[position] =
-                            new DemoSurfaceTextureListener(context, position);
+                            new DemoSurfaceTextureListener(context, position, null);
                 }
                 holder.textureView.setSurfaceTextureListener(mSurfaceTextureListeners[position]);
                 holder.textPosition.setText(String.valueOf(position));
@@ -79,32 +71,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
         };
 //        adapter.setHasStableIds(true);
         recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_stableid:
-//                Log.d("udinic", "stable ID checked=" + item.isChecked());
-//                if (item.isChecked()) {
-//                    item.setChecked(true);
-//                } else {
-//                    item.setChecked(false);
-//                }
-                return true;
-            case R.id.action_switch_to_lv:
-                Log.d("udinic", "Switch" + item);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     private static class DemoViewHolder extends RecyclerView.ViewHolder {

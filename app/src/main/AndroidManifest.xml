@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecyclerViewActivity">
+        <activity android:name=".RecyclerViewActivity" android:label="@string/rv_label">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ListViewActivity" android:label="@string/lv_label">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

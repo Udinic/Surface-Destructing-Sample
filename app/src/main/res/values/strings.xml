@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SurfDestructSample</string>
+    <string name="rv_label">RecyclerView Impl</string>
+    <string name="lv_label">ListView Impl</string>
 </resources>
