@@ -2,11 +2,13 @@ package com.udinic.surfdestructsample;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
+import android.view.View;
 
 class DemoSurfaceTextureListener implements TextureView.SurfaceTextureListener {
 
@@ -14,11 +16,22 @@ class DemoSurfaceTextureListener implements TextureView.SurfaceTextureListener {
 
     private MediaPlayer mMediaPlayer;
     private final int mPosition;
+    private View mIndicator;
+    private Runnable mRunnableInvisible = new Runnable() {
+        @Override
+        public void run() {
+            mIndicator.setBackgroundColor(Color.WHITE);
+        }
+    };
 
     DemoSurfaceTextureListener(Context context, int position, MediaPlayer mediaPlayer) {
         mContext = context;
         mPosition = position;
         mMediaPlayer = mediaPlayer;
+    }
+
+    public void setIndicator(View indicator) {
+        mIndicator = indicator;
     }
 
     @Override
@@ -61,6 +74,12 @@ class DemoSurfaceTextureListener implements TextureView.SurfaceTextureListener {
 
         cleanup();
         surfaceTexture.release();
+        if (mIndicator != null) {
+            mIndicator.removeCallbacks(mRunnableInvisible);
+            mIndicator.setBackgroundColor(Color.RED);
+            mIndicator.postDelayed(mRunnableInvisible, 50);
+        }
+
         return false;
     }
 

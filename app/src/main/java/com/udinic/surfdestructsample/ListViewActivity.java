@@ -93,6 +93,7 @@ public class ListViewActivity extends BaseActivity {
                 if (mSurfaceTextureListeners[position] == null) {
                     mSurfaceTextureListeners[position] =
                             new DemoSurfaceTextureListener(context, position, null);
+                    mSurfaceTextureListeners[position].setIndicator(findViewById(R.id.indicator));
                 }
 
                 ViewGroup layoutView = (ViewGroup) convertView;
@@ -103,7 +104,6 @@ public class ListViewActivity extends BaseActivity {
 
                 return convertView;
             }
-
         };
 
         listView.setAdapter(adapter);
