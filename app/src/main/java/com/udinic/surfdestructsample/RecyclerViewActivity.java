@@ -30,7 +30,6 @@ public class RecyclerViewActivity extends BaseActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setItemPrefetchEnabled(false);
         recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setItemAnimator(null);
         adapter = new RecyclerView.Adapter<DemoViewHolder>() {
             @Override
             public DemoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -70,7 +69,6 @@ public class RecyclerViewActivity extends BaseActivity {
                 return position;
             }
         };
-//        adapter.setHasStableIds(true);
         recyclerView.setAdapter(adapter);
     }
 

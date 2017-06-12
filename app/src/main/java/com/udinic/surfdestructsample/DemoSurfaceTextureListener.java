@@ -1,7 +1,6 @@
 package com.udinic.surfdestructsample;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;

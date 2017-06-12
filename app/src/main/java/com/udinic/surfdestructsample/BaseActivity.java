@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -30,14 +29,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_stableid:
-//                Log.d("udinic", "stable ID checked=" + item.isChecked());
-//                if (item.isChecked()) {
-//                    item.setChecked(true);
-//                } else {
-//                    item.setChecked(false);
-//                }
-                return true;
             case R.id.action_switch:
                 Class activityToOpen = getClass().equals(RecyclerViewActivity.class) ?
                         ListViewActivity.class : RecyclerViewActivity.class;
